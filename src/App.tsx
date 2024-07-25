@@ -49,10 +49,10 @@ const App: React.FC = () => {
             last_name: item['last_name'] || '',
             email: item['email'] || '',
           }));
-
+  
           const formData = new FormData();
           formData.append('file', file);
-
+  
           try {
             const response = await axios.put('/api/MultiCreateStudent', formData, {
               headers: {
@@ -65,7 +65,7 @@ const App: React.FC = () => {
                 }
               }
             });
-
+  
             console.log('Response:', response);
             setData(prevData => [...prevData, ...updatedData]);
           } catch (error) {
@@ -205,11 +205,10 @@ const App: React.FC = () => {
       
       <button
         onClick={openMainModal}
-        style={{ backgroundColor: '#007bff', color: 'white', border: 'none', padding: '10px 20px', cursor: 'pointer' }}
+        style={{ backgroundColor: '#555', color: 'white', border: 'none', padding: '10px 20px', cursor: 'pointer', marginTop: '20px' }}
       >
         Add Member
       </button>
-
       <Modal
         isOpen={mainModalIsOpen}
         onRequestClose={closeMainModal}
@@ -217,143 +216,37 @@ const App: React.FC = () => {
         style={{
           content: {
             width: '500px',
-            height:'300px',
+            height: '300px',
             margin: 'auto',
             padding: '20px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            backgroundColor: '#333',
+            color: 'white',
+            border: '1px solid #555',
+          },
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
           },
         }}
       >
-        <h2 style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center',color:'black' }}>
+        <h2 style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'white' }}>
           Select Upload Type
         </h2>
         <button
           onClick={openAddMemberModal}
-          style={{ padding: '10px',width:'200px' }}
+          style={{ padding: '10px', width: '200px', backgroundColor: '#555', color: 'white', border: 'none', cursor: 'pointer', marginBottom: '20px' }}
         >
           Add Single User
         </button>
         <button
           onClick={openCsvModal}
-          style={{ padding: '10px',marginTop:'20px',width:'200px' }}
+          style={{ padding: '10px', width: '200px', backgroundColor: '#555', color: 'white', border: 'none', cursor: 'pointer' }}
         >
           Upload CSV
         </button>
       </Modal>
-
-      <Modal
-        isOpen={addMemberModalIsOpen}
-        onRequestClose={closeAddMemberModal}
-        contentLabel="Add Single User Modal"
-        style={{
-          content: {
-            width: '500px',
-            margin: 'auto',
-            padding: '20px',
-          },
-        }}
-      >
-        <h3 style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center',color:'black' }}>
-          Add New Member
-        </h3>
-        <input
-          type="text"
-          name="student_id"
-          placeholder="StudentID"
-          value={newMember.student_id}
-          onChange={handleInputChange}
-          style={{ marginRight: '10px', padding: '5px' }}
-        />
-        <input
-          type="text"
-          name="first_name"
-          placeholder="First Name"
-          value={newMember.first_name}
-          onChange={handleInputChange}
-          style={{ marginRight: '10px', padding: '5px' }}
-        />
-        <input
-          type="text"
-          name="last_name"
-          placeholder="Last Name"
-          value={newMember.last_name}
-          onChange={handleInputChange}
-          style={{ marginRight: '10px', padding: '5px' }}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={newMember.email}
-          onChange={handleInputChange}
-          style={{ marginRight: '10px', padding: '5px' }}
-        />
-        <button
-          onClick={handleAddMember}
-          style={{ backgroundColor: '#007bff', color: 'white', border: 'none', padding: '10px 20px', cursor: 'pointer' }}
-        >
-          Add Member
-        </button>
-      </Modal>
-
-      <Modal
-        isOpen={updateStudentModalIsOpen}
-        onRequestClose={closeUpdateStudentModal}
-        contentLabel="Update Student Modal"
-        style={{
-          content: {
-            width: '500px',
-            margin: 'auto',
-            padding: '20px',
-          },
-        }}
-      >
-        <h3 style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center',color:'black' }}>
-          Update Student
-        </h3>
-        <input
-          type="text"
-          name="student_id"
-          placeholder="StudentID"
-          value={studentToUpdate?.student_id || ''}
-          onChange={handleUpdateInputChange}
-          disabled
-          style={{ marginRight: '10px', padding: '5px' }}
-        />
-        <input
-          type="text"
-          name="first_name"
-          placeholder="First Name"
-          value={studentToUpdate?.first_name || ''}
-          onChange={handleUpdateInputChange}
-          style={{ marginRight: '10px', padding: '5px' }}
-        />
-        <input
-          type="text"
-          name="last_name"
-          placeholder="Last Name"
-          value={studentToUpdate?.last_name || ''}
-          onChange={handleUpdateInputChange}
-          style={{ marginRight: '10px', padding: '5px' }}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={studentToUpdate?.email || ''}
-          onChange={handleUpdateInputChange}
-          style={{ marginRight: '10px', padding: '5px' }}
-        />
-        <button
-          onClick={handleUpdateStudent}
-          style={{ backgroundColor: '#007bff', color: 'white', border: 'none', padding: '10px 20px', cursor: 'pointer' }}
-        >
-          Update Student
-        </button>
-      </Modal>
-
       <Modal
         isOpen={csvModalIsOpen}
         onRequestClose={closeCsvModal}
@@ -361,25 +254,163 @@ const App: React.FC = () => {
         style={{
           content: {
             width: '500px',
+            height: '400px',
             margin: 'auto',
             padding: '20px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backgroundColor: '#333',
+            color: 'white',
+            border: '1px solid #555',
+          },
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
           },
         }}
       >
-        <h3 style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center',color:'black' }}>
+        <h2 style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'white' }}>
           Upload CSV File
-        </h3>
-        <input
-          type="file"
-          accept=".csv"
-          onChange={handleFileUpload}
-        />
-        {csvFile && (
-          <div style={{ marginTop: '20px' }}>
-            <h4>Uploaded File: {csvFile.name}</h4>
-            <div>Upload Progress: {uploadProgress}%</div>
+        </h2>
+        <input type="file" accept=".csv" onChange={handleFileUpload} style={{ color: 'white' }} />
+        {uploadProgress > 0 && (
+          <div>
+            <p>Upload progress: {uploadProgress}%</p>
+            {uploadProgress === 100 && <p>Upload complete!</p>}
           </div>
         )}
+      </Modal>
+      <Modal
+        isOpen={addMemberModalIsOpen}
+        onRequestClose={closeAddMemberModal}
+        contentLabel="Add Member Modal"
+        style={{
+          content: {
+            width: '500px',
+            height: '500px',
+            margin: 'auto',
+            padding: '20px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backgroundColor: '#333',
+            color: 'white',
+            border: '1px solid #555',
+          },
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
+          },
+        }}
+      >
+        <h2 style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'white' }}>
+          Add Member
+        </h2>
+        <input
+          type="text"
+          name="student_id"
+          value={newMember.student_id}
+          onChange={handleInputChange}
+          placeholder="Student ID"
+          style={{ padding: '10px', margin: '10px 0', backgroundColor: '#444', color: 'white', border: '1px solid #555' }}
+        />
+        <input
+          type="text"
+          name="first_name"
+          value={newMember.first_name}
+          onChange={handleInputChange}
+          placeholder="First Name"
+          style={{ padding: '10px', margin: '10px 0', backgroundColor: '#444', color: 'white', border: '1px solid #555' }}
+        />
+        <input
+          type="text"
+          name="last_name"
+          value={newMember.last_name}
+          onChange={handleInputChange}
+          placeholder="Last Name"
+          style={{ padding: '10px', margin: '10px 0', backgroundColor: '#444', color: 'white', border: '1px solid #555' }}
+        />
+        <input
+          type="text"
+          name="email"
+          value={newMember.email}
+          onChange={handleInputChange}
+          placeholder="Email"
+          style={{ padding: '10px', margin: '10px 0', backgroundColor: '#444', color: 'white', border: '1px solid #555' }}
+        />
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <button
+            onClick={handleAddMember}
+            style={{ backgroundColor: '#555', color: 'white', border: 'none', padding: '10px 20px', cursor: 'pointer', marginTop: '20px' }}
+          >
+            Add Member
+          </button>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={updateStudentModalIsOpen}
+        onRequestClose={closeUpdateStudentModal}
+        contentLabel="Update Student Modal"
+        style={{
+          content: {
+            width: '500px',
+            height: '500px',
+            margin: 'auto',
+            padding: '20px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backgroundColor: '#333',
+            color: 'white',
+            border: '1px solid #555',
+          },
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
+          },
+        }}
+      >
+        <h2 style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'white' }}>
+          Update Student
+        </h2>
+        <input
+          type="text"
+          name="student_id"
+          value={studentToUpdate?.student_id || ''}
+          onChange={handleUpdateInputChange}
+          placeholder="Student ID"
+          style={{ padding: '10px', margin: '10px 0', backgroundColor: '#444', color: 'white', border: '1px solid #555' }}
+        />
+        <input
+          type="text"
+          name="first_name"
+          value={studentToUpdate?.first_name || ''}
+          onChange={handleUpdateInputChange}
+          placeholder="First Name"
+          style={{ padding: '10px', margin: '10px 0', backgroundColor: '#444', color: 'white', border: '1px solid #555' }}
+        />
+        <input
+          type="text"
+          name="last_name"
+          value={studentToUpdate?.last_name || ''}
+          onChange={handleUpdateInputChange}
+          placeholder="Last Name"
+          style={{ padding: '10px', margin: '10px 0', backgroundColor: '#444', color: 'white', border: '1px solid #555' }}
+        />
+        <input
+          type="text"
+          name="email"
+          value={studentToUpdate?.email || ''}
+          onChange={handleUpdateInputChange}
+          placeholder="Email"
+          style={{ padding: '10px', margin: '10px 0', backgroundColor: '#444', color: 'white', border: '1px solid #555' }}
+        />
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <button
+            onClick={handleUpdateStudent}
+            style={{ backgroundColor: '#555', color: 'white', border: 'none', padding: '10px 20px', cursor: 'pointer', marginTop: '20px' }}
+          >
+            Update Student
+          </button>
+        </div>
       </Modal>
     </div>
   );
