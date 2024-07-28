@@ -10,20 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mantine/core": "^7.11.2",
-    "@mantine/hooks": "^7.11.2",
     "@picocss/pico": "^2.0.6",
-    "autoprefixer": "^10.4.19",
     "axios": "^1.7.2",
     "dayjs": "^1.11.12",
     "papaparse": "^5.4.1",
-    "postcss": "^8.4.40",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-modal": "^3.16.1",
-    "tailwindcss": "^3.4.6"
+    "react-modal": "^3.16.1"
   },
   "devDependencies": {
+    "@heroicons/react": "^2.1.5",
     "@types/papaparse": "^5.3.14",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -34,6 +30,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "react-icons": "^5.2.1",
     "typescript": "^5.2.2",
     "vite": "^5.3.4"
   }

@@ -19,7 +19,7 @@ const App: React.FC = () => {
   const [csvModalIsOpen, setCsvModalIsOpen] = useState(false);
   const [addMemberModalIsOpen, setAddMemberModalIsOpen] = useState(false);
   const [updateStudentModalIsOpen, setUpdateStudentModalIsOpen] = useState(false);
-  const [csvFile, setCsvFile] = useState<File | null>(null);
+  //const [csvFile, setCsvFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [studentToUpdate, setStudentToUpdate] = useState<Student | null>(null);
 
@@ -39,7 +39,7 @@ const App: React.FC = () => {
   const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      setCsvFile(file);
+      //setCsvFile(file);
       Papa.parse<Student>(file, {
         header: true,
         complete: async (results) => {
@@ -186,6 +186,7 @@ const App: React.FC = () => {
                   onClick={() => openUpdateStudentModal(row)}
                  style={{backgroundColor: 'transparent',border: 'none',cursor: 'pointer',color: '#007bff',fontSize: '20px',marginRight: '10px'
                  }}
+                 aria-label="update"
                 >
                   <FaEdit />
                 </button>
@@ -193,6 +194,7 @@ const App: React.FC = () => {
                   onClick={() => handleRemoveMember(index)}
                   style={{backgroundColor: 'transparent',border: 'none',cursor: 'pointer',color: 'red',fontSize: '20px'
                  }}
+                 aria-label="delete"
                 >
                   <FaTrash />
                 </button>
@@ -342,7 +344,7 @@ const App: React.FC = () => {
             onClick={handleAddMember}
             style={{ backgroundColor: '#555', color: 'white', border: 'none', padding: '10px 20px', cursor: 'pointer', marginTop: '20px' }}
           >
-            Add Member
+            Add member
           </button>
         </div>
       </Modal>
